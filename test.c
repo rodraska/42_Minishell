@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/10 16:24:02 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:34:46 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int main(void)
     tokens = ft_split(line, ' ');
     i = -1;
     while (tokens[++i])
-        printf("%s\n", tokens[i]);
+        token_add_back(&tkn, tokens[i]);
+    token_print(tkn);
     return (0);
 }
 
