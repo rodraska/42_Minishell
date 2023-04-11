@@ -1,62 +1,33 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 16:24:03 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/10 16:24:04 by rreis-de         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-void    token_add_back(t_token **tkn, char *str)
+int ft_strlen(char *str)
 {
-    t_token *new;
-    t_token *last;
+    int i;
 
-    new = token_new(str);
-    if (*tkn)
-    {
-        last = token_last(*tkn);
-        last->next = new;
-    }
-    else
-        *tkn = new;
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
 }
 
-t_token    *token_new(char *str)
+char    *str_join(char *old, char *seg)
 {
-    t_token *elem;
+    int old_len;
+    int seg_len;
+    int i;
+    int j;
+    char    *new;
 
-    elem = (t_token *)malloc(sizeof(*elem));
-    if (!elem)
-        return (NULL);
-    elem->str = str;
-    elem->next = NULL;
-    return (elem);
-}
-
-t_token *token_last(t_token *tkn)
-{
-    t_token *last;
-
-    last = tkn;
-    while (tkn != NULL)
-    {
-        last = tkn;
-        tkn = tkn->next;
-    }
-    return (last);
-}
-
-void    token_print(t_token *tkn)
-{
-    while (tkn)
-    {
-        printf("%s\n", tkn->str);
-        tkn = tkn->next;
-    }
+    old_len = ft_strlen(old);
+    seg_len = ft_strlen(seg);
+    new = (char *)malloc(old_len + seg_len + 2);
+    i = -1;
+    while (++i < old_len)
+        new[i] = old[i];
+    new[i++] = '/';
+    j = -1;
+    while (++j < seg_len)
+        new[i++] = seg[j];
+    new[i] = 0;
+    return (new);
 }

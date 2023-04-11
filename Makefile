@@ -22,7 +22,9 @@ RM = rm -f
 
 SRCS = test.c \
 		utils.c \
-		ft_split.c 
+		list_utils.c \
+		ft_split.c \
+		builtin.c
 
 OBJS = $(SRCS:.c=.o)
 

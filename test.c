@@ -25,7 +25,10 @@ int main(void)
     i = -1;
     while (tokens[++i])
         token_add_back(&tkn, tokens[i]);
-    token_print(tkn);
+    ft_chdir("folder");
+    printf("%s\n", ft_cwd());
+    printf("%s\n", ft_env_var("HOME"));
+    //token_print(tkn);
     return (0);
 }
 
