@@ -20,6 +20,17 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+/* typedef struct s_env_var
+{
+    char *var;
+    char *exp;
+}   t_env_var;
+
+typedef struct s_mini
+{
+
+}   t_mini; */
+
 typedef struct s_token
 {
     char    *str;
@@ -27,13 +38,17 @@ typedef struct s_token
 }   t_token;
 
 
+void    ft_tokens(char *line);
+
 int ft_strlen(char *str);
 char    *str_join(char *old, char *seg);
+void    free_split(char **arr);
 
 void    token_add_back(t_token **tkn, char *str);
 t_token    *token_new(char *str);
 t_token *token_last(t_token *tkn);
 void    token_print(t_token *tkn);
+void    token_free(t_token **tkn);
 
 char	**ft_split(char const *s, char c);
 char	*word(char const *str, int *ptr_i, char c);

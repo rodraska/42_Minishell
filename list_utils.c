@@ -60,3 +60,16 @@ void    token_print(t_token *tkn)
         tkn = tkn->next;
     }
 }
+
+void    token_free(t_token **tkn)
+{
+    t_token *tmp;
+
+    while (*tkn)
+    {
+        tmp = (*tkn)->next;
+        free(*tkn);
+        *tkn = tmp;
+    }
+    *tkn = NULL;
+}

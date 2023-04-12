@@ -12,22 +12,40 @@
 
 #include "minishell.h"
 
-int main(void)
+void    ft_tokens(char *line)
 {
-    char *line;
     char **tokens;
     t_token *tkn;
     int i;
 
     tkn = NULL;
-    line = readline("/my_bash: ");
     tokens = ft_split(line, ' ');
+    i = -1;
+    while (tokens[++i])
+        token_add_back(&tkn, tokens[i]);
+    token_print(tkn);
+    free_split(tokens);
+    token_free(&tkn);
+}
+
+int main(void)
+{
+    char *line;
+
+    line = readline("/my_bash: ");
+    while (line != NULL)
+    {
+        ft_tokens(line);
+        free(line);
+        line = readline("/my_bash: ");
+    }
+    /* tokens = ft_split(line, ' ');
     i = -1;
     while (tokens[++i])
         token_add_back(&tkn, tokens[i]);
     ft_chdir("folder");
     printf("%s\n", ft_cwd());
-    printf("%s\n", ft_env_var("HOME"));
+    printf("%s\n", ft_env_var("HOME")); */
     //token_print(tkn);
     return (0);
 }

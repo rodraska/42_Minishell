@@ -31,3 +31,17 @@ char    *str_join(char *old, char *seg)
     new[i] = 0;
     return (new);
 }
+
+void    free_split(char **arr)
+{
+    int i;
+
+    i = 0;
+    while (arr[i])
+    {
+        free(arr[i]);
+        i++;
+    }
+    free(arr);
+    return ;
+}

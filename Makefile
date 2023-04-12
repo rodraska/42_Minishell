@@ -14,13 +14,13 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LDFLAGS = -lreadline
 
 RM = rm -f
 
-SRCS = test.c \
+SRCS = mini.c \
 		utils.c \
 		list_utils.c \
 		ft_split.c \
