@@ -22,6 +22,7 @@
 
 typedef struct s_cmd
 {
+    int type;
     char **args;
     char *gpath;
     int fd[2];
