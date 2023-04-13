@@ -20,16 +20,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-/* typedef struct s_env_var
+typedef struct s_cmd
 {
-    char *var;
-    char *exp;
-}   t_env_var;
-
-typedef struct s_mini
-{
-
-}   t_mini; */
+    char **args;
+    char *gpath;
+    int fd[2];
+    int in_fd;
+    int out_fd;
+}   t_cmd;
 
 typedef struct s_token
 {
