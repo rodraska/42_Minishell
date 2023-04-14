@@ -27,9 +27,25 @@ char    *ft_env_var(char *str)
     new = getenv(str);
     if (new == NULL)
     {
-        perror("error env variable\n");
-        return (NULL);
+        new = search_env_var(str);
+        if (new)
+            return (new);
+        else
+        {
+            perror("error env variable\n");
+            return (NULL);
+        }
     }
     else
         return (new);
+}
+
+void    ft_export(char *var, char *exp)
+{
+    env_var_add_back(&mini()->env_vars, var, exp);
+}
+
+void    ft_unset(char *var)
+{
+    remove_env_var(var);
 }

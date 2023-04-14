@@ -31,12 +31,18 @@ void    ft_tokens(char *line)
 int main(void)
 {
     char *line;
+    char *str;
 
     line = readline("/my_bash: ");
     while (line != NULL)
     {
         add_history(line);
-        ft_tokens(line);
+        ft_export("CASA", "/home/casa");
+        str = ft_env_var("CASA");
+        ft_unset("CASA");
+        if (str)
+            printf("%s\n", str);
+        //ft_tokens(line);
         free(line);
         line = readline("/my_bash: ");
     }

@@ -21,11 +21,14 @@ LDFLAGS = -lreadline
 RM = rm -f
 
 SRCS = mini.c \
+		exec.c \
+		builtin.c \
 		utils.c \
-		list_utils.c \
-		ft_split.c \
-		builtin.c
-
+		token_utils.c \
+		env_var_utils.c \
+		env_var_utils2.c \
+		ft_split.c
+		
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
