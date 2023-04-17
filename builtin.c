@@ -47,5 +47,5 @@ void    ft_export(char *var, char *exp)
 
 void    ft_unset(char *var)
 {
-    remove_env_var(var);
+    remove_env_var(var, &mini()->env_vars);
 }

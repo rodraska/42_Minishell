@@ -16,12 +16,12 @@ int ft_exec(t_cmd *cmd, char **env)
         return (2);
     if (pid == 0)
     {
-        if (cmd->type == 0)
+        if (cmd->type == COMMAND)
         {
             if (execve(cmd->gpath, cmd->args, env) == -1)
                 perror("could not execute execve\n");
         }
-        else if (cmd->type == 1)
+        else if (cmd->type == BUILTIN)
             ft_builtin(cmd);
     }
     return (0);

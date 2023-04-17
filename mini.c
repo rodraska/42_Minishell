@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   mini.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/10 16:34:46 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:30:01 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int main(void)
     char *str;
 
     line = readline("/my_bash: ");
+    ft_export("CASA", "/home/casa");
     while (line != NULL)
     {
         add_history(line);
-        ft_export("CASA", "/home/casa");
         str = ft_env_var("CASA");
         ft_unset("CASA");
         if (str)

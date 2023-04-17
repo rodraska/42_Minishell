@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/10 16:24:00 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:50:24 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# define COMMAND 1
+# define BUILTIN 2
+# define OP_IN 3
+# define OP_OUT 4
+# define INFILE 5
+# define OUTFILE 6
 
 typedef struct s_env_var
 {
@@ -71,7 +78,7 @@ t_env_var   *env_var_last(t_env_var *lst);
 void    env_var_print(t_env_var *lst);
 void    env_var_free(t_env_var **lst);
 char    *search_env_var(char *var);
-void    remove_env_var(char *var);
+void    remove_env_var(char *var, t_env_var **lst);
 
 char	**ft_split(char const *s, char c);
 char	*word(char const *str, int *ptr_i, char c);
