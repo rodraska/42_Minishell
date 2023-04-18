@@ -16,8 +16,12 @@ char    *ft_cwd()
 
 void    ft_chdir(char *dir)
 {
-    if (chdir(str_join(ft_cwd(), dir)) != 0)
+    char *str;
+
+    str = str_join(ft_cwd(), dir, '/');
+    if (chdir(str) != 0)
         perror("Error on chdir\n");
+    free(str);
 }
 
 char    *ft_env_var(char *str)
@@ -48,4 +52,20 @@ void    ft_export(char *var, char *exp)
 void    ft_unset(char *var)
 {
     remove_env_var(var, &mini()->env_vars);
+}
+
+void    ft_env(char **env)
+{
+    int i;
+    char **new;
+
+    i = -1;
+    while (env[++i])
+    {
+        new = str_separate(env[i]);
+        env_var_add_back(&mini()->env_vars, new[0], new[1]);
+        /* free(new[0]);
+        free(new[1]);
+        free(new); */
+    }
 }

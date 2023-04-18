@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/17 16:50:24 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:25:34 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_mini
 void    ft_tokens(char *line);
 
 int ft_strlen(char *str);
-char    *str_join(char *old, char *seg);
+char    *str_join(char *old, char *seg, char c);
+char    **str_separate(char *str);
 int ft_strcmp(char *s1, char *s2);
 void    free_split(char **arr);
 t_mini  *mini(void);
@@ -89,6 +90,7 @@ void    ft_chdir(char *dir);
 char    *ft_env_var(char *str);
 void    ft_export(char *var, char *exp);
 void    ft_unset(char *var);
+void    ft_env(char **env);
 
 int ft_cmds(t_cmd *cmds, char **env);
 int ft_exec(t_cmd *cmd, char **env);

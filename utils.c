@@ -5,12 +5,14 @@ int ft_strlen(char *str)
     int i;
 
     i = 0;
+    if (!str)
+        return (0);
     while (str[i])
         i++;
     return (i);
 }
 
-char    *str_join(char *old, char *seg)
+char    *str_join(char *old, char *seg, char c)
 {
     int old_len;
     int seg_len;
@@ -24,11 +26,40 @@ char    *str_join(char *old, char *seg)
     i = -1;
     while (++i < old_len)
         new[i] = old[i];
-    new[i++] = '/';
+    new[i++] = c;
     j = -1;
     while (++j < seg_len)
         new[i++] = seg[j];
     new[i] = 0;
+    if (old)
+        free(old);
+    return (new);
+}
+
+char    **str_separate(char *str)
+{
+    char    **new;
+    char    *var;
+    char    *exp;
+    int     i;
+    int     j;
+
+    new = (char **)malloc(sizeof(char *) * 2);
+    i = 0;
+    while (str[i] != '=')
+        i++;
+    var = (char *)malloc(i + 1);
+    exp = (char *)malloc(ft_strlen(str) - i);
+    i = -1;
+    while (str[++i] != '=')
+        var[i] = str[i];
+    var[i++] = 0;
+    j = -1;
+    while (str[++i])
+        exp[++j] = str[i];
+    exp[++j] = 0;
+    new[0] = var;
+    new[1] = exp;
     return (new);
 }
 

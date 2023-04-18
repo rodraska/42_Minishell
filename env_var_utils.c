@@ -30,7 +30,6 @@ t_env_var   *env_var_new(char *var, char *exp)
 
 t_env_var   *env_var_last(t_env_var *lst)
 {
-    printf("last\n");
     t_env_var *last;
 
     last = lst;

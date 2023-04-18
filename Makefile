@@ -6,7 +6,7 @@
 #    By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 16:23:51 by rreis-de          #+#    #+#              #
-#    Updated: 2023/04/10 16:34:25 by rreis-de         ###   ########.fr        #
+#    Updated: 2023/04/18 16:28:27 by rreis-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 LDFLAGS = -lreadline
 
