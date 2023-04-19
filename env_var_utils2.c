@@ -14,33 +14,6 @@ char    *search_env_var(char *var)
     return (NULL);
 }
 
-/* void    remove_env_var(char *var, t_env_var **lst)
-{
-    t_env_var *prev;
-    t_env_var *tmp;
-
-    prev = NULL;
-    head = lst;
-    while (*lst && ft_strcmp((*lst)->var, var) != 0)
-    {
-        prev = *lst;
-        (*lst) = (*lst)->next;
-    }
-    if (*lst == NULL)
-        return ;
-    if (prev == NULL)
-    {
-        tmp = (*lst)->next;
-        free(*lst);
-        *lst = tmp;     
-    }
-    else
-    {
-        prev->next = (*lst)->next;
-        free(*lst);
-    }
-} */
-
 void    remove_env_var(char *var, t_env_var **lst)
 {
     t_env_var *curr;
@@ -57,6 +30,7 @@ void    remove_env_var(char *var, t_env_var **lst)
             else
                 prev->next = curr->next;
             free(curr);
+            return ;
         }
         prev = curr;
         curr = curr->next; 

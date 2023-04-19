@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/18 15:25:34 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:48:04 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_env_var
 {
+    int type;
     char *var;
     char *exp;
     struct s_env_var *next;
@@ -73,8 +74,8 @@ t_token *token_last(t_token *tkn);
 void    token_print(t_token *tkn);
 void    token_free(t_token **tkn);
 
-void    env_var_add_back(t_env_var **lst, char *var, char *exp);
-t_env_var   *env_var_new(char *var, char *exp);
+void    env_var_add_back(t_env_var **lst, char *var, char *exp, int type);
+t_env_var   *env_var_new(char *var, char *exp, int type);
 t_env_var   *env_var_last(t_env_var *lst);
 void    env_var_print(t_env_var *lst);
 void    env_var_free(t_env_var **lst);

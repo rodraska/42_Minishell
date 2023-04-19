@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/18 17:37:17 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:58:13 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int main(int ac, char **av, char **env)
 
     ac = 0;
     av = NULL;
-    env = NULL;
-    //ft_env(env);
+    //env = NULL;
+    ft_env(env);
     line = readline("/my_bash: ");
     ft_export("OLA", "/home/ola");
     ft_export("LISBOA", "/home/lisboa");
@@ -61,6 +61,6 @@ int main(int ac, char **av, char **env)
         line = readline("/my_bash: ");
     }
     env_var_print(mini()->env_vars);
-    //env_var_free(&mini()->env_vars);
+    env_var_free(&mini()->env_vars);
     return (0);
 }

@@ -46,7 +46,7 @@ char    *ft_env_var(char *str)
 
 void    ft_export(char *var, char *exp)
 {
-    env_var_add_back(&mini()->env_vars, var, exp);
+    env_var_add_back(&mini()->env_vars, var, exp, 1);
 }
 
 void    ft_unset(char *var)
@@ -63,9 +63,7 @@ void    ft_env(char **env)
     while (env[++i])
     {
         new = str_separate(env[i]);
-        env_var_add_back(&mini()->env_vars, new[0], new[1]);
-        /* free(new[0]);
-        free(new[1]);
-        free(new); */
+        env_var_add_back(&mini()->env_vars, new[0], new[1], 0);
+        free(new);
     }
 }
