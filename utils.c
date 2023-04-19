@@ -63,6 +63,30 @@ char    **str_separate(char *str)
     return (new);
 }
 
+char    *str_trim(char *src, char c)
+{
+    char *dest;
+    int  len;
+    int  i;
+    int  j;
+
+    j = 0;
+    while (src[j] != c)
+        j++;
+    j++;
+    len = ft_strlen(src) - j;
+    dest = (char *)malloc(len + 1);
+    i = 0;
+    while (i < len)
+    {
+        dest[i] = src[j];
+        i++;
+        j++;
+    }
+    dest[i] = 0;
+    return (dest);
+}
+
 int ft_strcmp(char *s1, char *s2)
 {
     int i;

@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/19 14:48:04 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:53:23 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,17 @@ typedef struct s_token
 typedef struct s_mini
 {
     struct s_env_var *env_vars;
+    char    **paths;
 }   t_mini;
 
 
 void    ft_tokens(char *line);
+void    ft_mini(char **env);
 
 int ft_strlen(char *str);
 char    *str_join(char *old, char *seg, char c);
 char    **str_separate(char *str);
+char    *str_trim(char *src, char c);
 int ft_strcmp(char *s1, char *s2);
 void    free_split(char **arr);
 t_mini  *mini(void);
@@ -81,6 +84,12 @@ void    env_var_print(t_env_var *lst);
 void    env_var_free(t_env_var **lst);
 char    *search_env_var(char *var);
 void    remove_env_var(char *var, t_env_var **lst);
+
+int cmd_size(t_cmd *cmds);
+
+void    get_paths(char **env);
+void    get_gptah(t_cmd *cmd);
+char    *path_join(char *s1, char *s2);
 
 char	**ft_split(char const *s, char c);
 char	*word(char const *str, int *ptr_i, char c);

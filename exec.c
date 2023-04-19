@@ -11,6 +11,12 @@ int ft_exec(t_cmd *cmd, char **env)
 {
     int pid;
 
+    if(cmd_size(cmd) == 1 && cmd->type == BUILTIN)
+    {
+        pid = 0;
+        ft_builtin(cmd);
+        return (0);
+    }
     pid = fork();
     if (pid < 0)
         return (2);

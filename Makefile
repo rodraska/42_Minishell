@@ -6,7 +6,7 @@
 #    By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 16:23:51 by rreis-de          #+#    #+#              #
-#    Updated: 2023/04/19 14:56:31 by rreis-de         ###   ########.fr        #
+#    Updated: 2023/04/19 17:01:25 by rreis-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS = mini.c \
 		token_utils.c \
 		env_var_utils.c \
 		env_var_utils2.c \
+		cmd_utils.c \
+		path.c \
 		ft_split.c
 		
 OBJS = $(SRCS:.c=.o)

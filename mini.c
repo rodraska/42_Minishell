@@ -6,11 +6,16 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/19 14:58:13 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:54:21 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void    ft_mini(char **env)
+{
+    get_paths(env);
+}
 
 void    ft_tokens(char *line)
 {
@@ -31,36 +36,19 @@ void    ft_tokens(char *line)
 int main(int ac, char **av, char **env)
 {
     char *line;
-    char *str;
-    //char *cwd;
 
     ac = 0;
     av = NULL;
-    //env = NULL;
+    ft_mini(env);
     ft_env(env);
     line = readline("/my_bash: ");
-    ft_export("OLA", "/home/ola");
-    ft_export("LISBOA", "/home/lisboa");
-    ft_export("42", "/home/42");
-    ft_export("ADEUS", "/home/adeus");
-    ft_export("CASA", "/home/casa");
-    env_var_print(mini()->env_vars);
-    /* ft_chdir("folder");
-    cwd = ft_cwd();
-    printf("%s\n", cwd);
-    free(cwd); */
     while (line != NULL)
     {
         add_history(line);
-        str = ft_env_var("CASA");
-        ft_unset("CASA");
-        /* if (str)
-            printf("%s\n", str); */
-        //ft_tokens(line);
+        ft_tokens(line);
         free(line);
         line = readline("/my_bash: ");
     }
-    env_var_print(mini()->env_vars);
-    env_var_free(&mini()->env_vars);
+    free_split(mini()->paths);
     return (0);
 }
