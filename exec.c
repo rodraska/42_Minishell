@@ -22,6 +22,10 @@ int ft_exec(t_cmd *cmd, char **env)
         return (2);
     if (pid == 0)
     {
+        close(cmd->fd[0]);
+        dup2(cmd->in_fd, STDIN_FILENO);
+        dup2(cmd->fd[1], STDOUT_FILENO);
+        close(cmd->fd[1]);
         if (cmd->type == COMMAND)
         {
             if (execve(cmd->gpath, cmd->args, env) == -1)
@@ -30,6 +34,8 @@ int ft_exec(t_cmd *cmd, char **env)
         else if (cmd->type == BUILTIN)
             ft_builtin(cmd);
     }
+    close(cmd->fd[0]);
+    close(cmd->fd[1]);
     return (0);
 }
 
@@ -43,4 +49,9 @@ int ft_cmds(t_cmd *cmds, char **env)
         cmds = cmds->next;
     }
     return (0);
+}
+
+void    test_cmds()
+{
+    
 }
