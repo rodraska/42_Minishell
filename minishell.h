@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/20 13:48:52 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:29:28 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,16 @@ char	*word(char const *str, int *ptr_i, char c);
 int	string_counter(char const *str, char c);
 
 char    *ft_cwd(t_cmd *cmd);
-void    ft_chdir(char *dir);
-char    *ft_env_var(char *str);
+void    ft_chdir(char *dir, t_cmd *cmd);
+char    *ft_env_var(char *str, t_cmd *cmd);
 void    ft_export(char *var, char *exp);
 void    ft_unset(char *var);
+void    ft_exit();
+void    ft_env();
 void    init_env(char **env);
 
 int ft_cmds(t_cmd *cmds, char **env);
 int ft_exec(t_cmd *cmd, char **env);
-int ft_builtin(t_cmd *cmd);
+int ft_builtin(t_cmd *cmd, char **env);
 void    test_cmds(char **env);
 #endif

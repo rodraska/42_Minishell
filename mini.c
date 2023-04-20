@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/20 13:41:55 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:43:02 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int ac, char **av, char **env)
     ac = 0;
     av = NULL;
     ft_mini(env);
+    ft_export("CASA", "/home/rodrigo/casa");
     test_cmds(env);
     /* init_env(env);
     line = readline("/my_bash: ");

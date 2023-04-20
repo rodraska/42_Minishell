@@ -5,9 +5,9 @@ int ft_builtin(t_cmd *cmd, char **env)
     if (!cmd)
         return (2);
     if (cmd->args[0][0] == 'c')
-        ft_chdir(cmd->args[1]);
+        ft_chdir(cmd->args[1], cmd);
     else if (cmd->args[0][0] == 'e' && cmd->args[0][1] == 'c')
-        ft_env_var(cmd->args[1]);
+        ft_env_var(cmd->args[1], cmd);
     else if (cmd->args[0][0] == 'e' && cmd->args[0][1] == 'n')
         ft_env(env);
     else if (cmd->args[0][0] == 'e' && cmd->args[0][2] == 'i')
@@ -15,7 +15,7 @@ int ft_builtin(t_cmd *cmd, char **env)
     else if (cmd->args[0][0] == 'e' && cmd->args[0][2] == 'p')
         ft_export(cmd->args[0], cmd->args[1]);
     else if (cmd->args[0][0] == 'p')
-        ft_cwd();
+        ft_cwd(cmd);
     else if (cmd->args[0][0] == 'u')
         ft_unset(cmd->args[0]);
     return (0);
@@ -75,9 +75,9 @@ void    test_cmds(char **env)
     t_cmd *cmds;
 
     cmds = NULL;
-    cmd_add_back(&cmds, COMMAND, ft_split("cat mini.c", ' '));
+    cmd_add_back(&cmds, BUILTIN, ft_split("echo CASA", ' '));    
     cmd_add_back(&cmds, COMMAND, ft_split("sort", ' '));
-    cmd_add_back(&cmds, COMMAND, ft_split("wc -l", ' '));
+    //cmd_add_back(&cmds, COMMAND, ft_split("wc -l", ' '));
     ft_cmds(cmds, env);
     cmd_free(&cmds);
 }
