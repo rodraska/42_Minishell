@@ -1,12 +1,15 @@
 #include "minishell.h"
 
-char    *ft_cwd()
+char    *ft_cwd(t_cmd *cmd)
 {
     char *cwd;
 
     cwd = (char *)malloc(sizeof(char) * 1024);
     if (getcwd(cwd, 1024) != NULL)
+    {
+        write(cmd->fd[1], cwd, ft_strlen(cwd));
         return (cwd);
+    }
     else
     {
         perror("Error on getcwd\n");
@@ -33,7 +36,11 @@ char    *ft_env_var(char *str)
     {
         new = search_env_var(str);
         if (new)
+        {
+            
             return (new);
+        }
+            
         else
         {
             perror("error env variable\n");
@@ -54,7 +61,7 @@ void    ft_unset(char *var)
     remove_env_var(var, &mini()->env_vars);
 }
 
-void    ft_env(char **env)
+void    init_env(char **env)
 {
     int i;
     char **new;

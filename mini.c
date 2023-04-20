@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/20 11:18:11 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:41:55 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int ac, char **av, char **env)
     av = NULL;
     ft_mini(env);
     test_cmds(env);
-    /* ft_env(env);
+    /* init_env(env);
     line = readline("/my_bash: ");
     while (line != NULL)
     {
