@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:24:01 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/19 18:13:08 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:18:11 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ void    ft_tokens(char *line)
 
 int main(int ac, char **av, char **env)
 {
-    char *line;
+    //char *line;
 
     ac = 0;
     av = NULL;
     ft_mini(env);
-    ft_env(env);
+    test_cmds(env);
+    /* ft_env(env);
     line = readline("/my_bash: ");
     while (line != NULL)
     {
@@ -48,7 +49,7 @@ int main(int ac, char **av, char **env)
         ft_tokens(line);
         free(line);
         line = readline("/my_bash: ");
-    }
+    } */
     free_split(mini()->paths);
     return (0);
 }

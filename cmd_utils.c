@@ -35,7 +35,7 @@ void    cmd_add_back(t_cmd **cmds, int type, char **args)
     if (*cmds)
     {
         last = cmd_last(*cmds);
-        cmds->next = new;
+        last->next = new;
     }
     else
         *cmds = new;
@@ -48,9 +48,26 @@ t_cmd   *cmd_new(int type, char **args)
     cmd = (t_cmd *)malloc(sizeof(*cmd));
     if (!cmd)
         return (NULL);
-    get_gptah(cmd);
     cmd->type = type;
     cmd->args = args;
+    if (cmd->type == COMMAND)
+        get_gptah(cmd);
     cmd->next = NULL;
     return (cmd);
+}
+
+void    cmd_free(t_cmd **cmd)
+{
+    t_cmd *tmp;
+
+    while (*cmd)
+    {
+        if ((*cmd)->type == COMMAND)
+            free((*cmd)->gpath);
+        free_split((*cmd)->args);
+        tmp = (*cmd)->next;
+        free(*cmd);
+        *cmd = tmp;
+    }
+    *cmd = NULL;
 }

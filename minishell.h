@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/19 18:44:04 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:03:58 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_cmd
 {
     int  type;
     char **args;
-    char *gpath; 
+    char *gpath;
     int fd[2];
     int in_fd;
     int out_fd;
@@ -87,6 +87,9 @@ void    remove_env_var(char *var, t_env_var **lst);
 
 int cmd_size(t_cmd *cmds);
 t_cmd *cmd_last(t_cmd *cmd);
+void    cmd_add_back(t_cmd **cmds, int type, char **args);
+t_cmd   *cmd_new(int type, char **args);
+void    cmd_free(t_cmd **cmd);
 
 void    get_paths(char **env);
 void    get_gptah(t_cmd *cmd);
@@ -106,6 +109,5 @@ void    ft_env(char **env);
 int ft_cmds(t_cmd *cmds, char **env);
 int ft_exec(t_cmd *cmd, char **env);
 int ft_builtin(t_cmd *cmd);
-void    test_cmds();
-
+void    test_cmds(char **env);
 #endif
