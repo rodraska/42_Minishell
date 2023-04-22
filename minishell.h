@@ -6,7 +6,7 @@
 /*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:23:59 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/20 14:29:28 by rreis-de         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:28:17 by rreis-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char    *str_join(char *old, char *seg, char c);
 char    **str_separate(char *str);
 char    *str_trim(char *src, char c);
 int ft_strcmp(char *s1, char *s2);
+int ft_strncmp(char *s1, char *s2, int n);
 void    free_split(char **arr);
 t_mini  *mini(void);
 
@@ -99,17 +100,17 @@ char	**ft_split(char const *s, char c);
 char	*word(char const *str, int *ptr_i, char c);
 int	string_counter(char const *str, char c);
 
-char    *ft_cwd(t_cmd *cmd);
+void    ft_cwd(t_cmd *cmd);
 void    ft_chdir(char *dir, t_cmd *cmd);
-char    *ft_env_var(char *str, t_cmd *cmd);
-void    ft_export(char *var, char *exp);
+void    ft_env_var(char *str, t_cmd *cmd, int f);
+void    ft_export(char *str);
 void    ft_unset(char *var);
 void    ft_exit();
-void    ft_env();
+void    ft_env(t_cmd *cmd);
 void    init_env(char **env);
 
 int ft_cmds(t_cmd *cmds, char **env);
 int ft_exec(t_cmd *cmd, char **env);
-int ft_builtin(t_cmd *cmd, char **env);
+void    ft_builtin(t_cmd *cmd, char **env);
 void    test_cmds(char **env);
 #endif

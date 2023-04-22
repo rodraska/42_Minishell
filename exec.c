@@ -1,24 +1,29 @@
 #include "minishell.h"
 
-int ft_builtin(t_cmd *cmd, char **env)
+void    ft_builtin(t_cmd *cmd, char **env)
 {
     if (!cmd)
-        return (2);
+        return ;
+    env = NULL;
     if (cmd->args[0][0] == 'c')
         ft_chdir(cmd->args[1], cmd);
     else if (cmd->args[0][0] == 'e' && cmd->args[0][1] == 'c')
-        ft_env_var(cmd->args[1], cmd);
+    {
+        if (cmd->args[1][0] == '-' && cmd->args[1][1] == 'n')
+            ft_env_var(cmd->args[2], cmd, 1);
+        else
+            ft_env_var(cmd->args[1], cmd, 0);
+    }
     else if (cmd->args[0][0] == 'e' && cmd->args[0][1] == 'n')
-        ft_env(env);
+        ft_env(cmd);
     else if (cmd->args[0][0] == 'e' && cmd->args[0][2] == 'i')
         ft_exit();
     else if (cmd->args[0][0] == 'e' && cmd->args[0][2] == 'p')
-        ft_export(cmd->args[0], cmd->args[1]);
+        ft_export(cmd->args[1]);
     else if (cmd->args[0][0] == 'p')
         ft_cwd(cmd);
     else if (cmd->args[0][0] == 'u')
         ft_unset(cmd->args[0]);
-    return (0);
 }
 
 int ft_exec(t_cmd *cmd, char **env)
@@ -39,7 +44,7 @@ int ft_exec(t_cmd *cmd, char **env)
         close(cmd->fd[0]);
         dup2(cmd->in_fd, STDIN_FILENO);
         dup2(cmd->fd[1], STDOUT_FILENO);
-        close(cmd->fd[1]);
+        //close(cmd->fd[1]);
         if (cmd->type == COMMAND)
         {
             if (execve(cmd->gpath, cmd->args, env) == -1)
@@ -59,8 +64,11 @@ int ft_cmds(t_cmd *cmds, char **env)
 {
     while(cmds)
     {
-        if (pipe(cmds->fd) == -1)
-            return (2);
+        if(cmds != cmd_last(cmds))
+        {
+            if (pipe(cmds->fd) == -1)
+                return (2);
+        }
         if (cmds == cmd_last(cmds))
             cmds->fd[1] = open("outfile", O_CREAT \
 			| O_TRUNC | O_RDWR, 0644);
@@ -75,9 +83,8 @@ void    test_cmds(char **env)
     t_cmd *cmds;
 
     cmds = NULL;
-    cmd_add_back(&cmds, BUILTIN, ft_split("echo CASA", ' '));    
-    cmd_add_back(&cmds, COMMAND, ft_split("sort", ' '));
-    //cmd_add_back(&cmds, COMMAND, ft_split("wc -l", ' '));
+    cmd_add_back(&cmds, BUILTIN, ft_split("echo HOME", ' '));
+    cmd_add_back(&cmds, COMMAND, ft_split("wc", ' '));
     ft_cmds(cmds, env);
     cmd_free(&cmds);
 }
