@@ -3,15 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rreis-de <rreis-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lliberal <lliberal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 16:23:56 by rreis-de          #+#    #+#             */
-/*   Updated: 2023/04/10 16:23:57 by rreis-de         ###   ########.fr       */
+/*   Created: 2023/05/04 13:58:39 by lliberal          #+#    #+#             */
+/*   Updated: 2023/06/04 10:14:02 by lliberal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
+/* static char	**split_rec(char **res, char *str, int cnt, char c)
+{
+	int		index;
+	char	*keep_parts;
+
+	index = 0;
+	keep_parts = NULL;
+	while (*str == c)
+		str++;
+	while (str[index] != c && str[index])
+		index++;
+	if (index > 0)
+		keep_parts = malloc(sizeof(char) * (index + 1));
+	index = 0;
+	while (keep_parts && *str != c && *str)
+		keep_parts[index++] = *str++;
+	if (keep_parts)
+		keep_parts[index] = '\0';
+	if (keep_parts)
+		res = split_rec(res, str, cnt + 1, c);
+	else
+		res = malloc_ob(sizeof(char *) * (cnt + 1));
+	if (res)
+		res[cnt] = keep_parts;
+	return (res);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	return (split_rec(0, (char *)s, 0, c));
+} */
 int	string_counter(char const *str, char c)
 {
 	int	i;
@@ -54,14 +85,13 @@ char	*word(char const *str, int *ptr_i, char c)
 		i++;
 		n++;
 	}
-	word = (char *)malloc(sizeof(char) * (n + 1));
+	word = malloc_ob((n + 1));
 	if (!word)
 		return (NULL);
 	i = i - n;
 	k = 0;
 	while (str[i] != '\0' && str[i] != c)
 		word[k++] = str[i++];
-	word[k] = '\0';
 	*ptr_i = i;
 	return (word);
 }
@@ -74,10 +104,9 @@ char	**ft_split(char const *s, char c)
 	char	**arr;
 
 	count = string_counter(s, c);
-	arr = (char **)malloc(sizeof(char *) * (count + 1));
+	arr = malloc_ob(sizeof(char *) * (count + 1));
 	if (!arr)
 		return (NULL);
-	arr[count] = NULL;
 	i = 0;
 	w = 0;
 	while (w < count && s[i])
@@ -92,4 +121,19 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	return (arr);
+}
+
+void	free_2d(char **result)
+{
+	int	i;
+
+	i = 0;
+	if (!result)
+		return ;
+	while (result && result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
 }
